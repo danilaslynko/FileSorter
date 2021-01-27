@@ -20,12 +20,15 @@ public class Main {
             Optional<List<Path>> filesOpt = FileOps.findTextFilesInFolder(scanner.next());
             if (filesOpt.isPresent()) {
                 paths = filesOpt.get();
-            }
-            else {
+            } else {
                 System.out.println("Directory is empty");
                 return;
             }
-        } catch (IOException e) {
+        }
+        catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
