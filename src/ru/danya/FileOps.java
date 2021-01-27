@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 public class FileOps {
 
     public static Optional<List<Path>> findTextFilesInFolder(String path) throws IOException {
-        Path parentDir = Path.of(path);
+        Path parentDir = Paths.get(path);
 
         if (!Files.exists(parentDir) || !Files.isDirectory(parentDir)) {
             // по-хорошему, надо бы выбросить исключение DirectoryDoesntExistException
@@ -35,7 +36,7 @@ public class FileOps {
 
     public static Path mergeTextFiles(List<Path> filesToMerge, String pathForResultingFile)
             throws IOException {
-        Path outputPath = Path.of(pathForResultingFile);
+        Path outputPath = Paths.get(pathForResultingFile);
         // стрим, в который засунем все считанные строчки
         Stream<String> totalLines = Stream.empty();
 
